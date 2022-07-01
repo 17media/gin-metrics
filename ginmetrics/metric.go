@@ -18,6 +18,18 @@ type Metric struct {
 	vec prometheus.Collector
 }
 
+// DeleteGaugeValue delete Gauge type Metric.
+func (m *Metric) DeleteGaugeValue(labelValues []string) error {
+	if m.Type == None {
+		return errors.Errorf("metric '%s' not existed.", m.Name)
+	}
+	if m.Type != Gauge {
+		return errors.Errorf("metric '%s' not Gauge type", m.Name)
+	}
+	m.vec.(*prometheus.GaugeVec).DeleteLabelValues(labelValues...)
+	return nil
+}
+
 // SetGaugeValue set data for Gauge type Metric.
 func (m *Metric) SetGaugeValue(labelValues []string, value float64) error {
 	if m.Type == None {
