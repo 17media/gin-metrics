@@ -104,3 +104,8 @@ func (m *Metric) Observe(labelValues []string, value float64) error {
 	}
 	return nil
 }
+
+// Get the prometheus collector form Metric
+func (m *Metric) GetCollector() prometheus.Collector {
+	return m.vec
+}
