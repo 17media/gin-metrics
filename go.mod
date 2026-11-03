@@ -1,6 +1,6 @@
 module github.com/penglongli/gin-metrics
 
-go 1.23
+go 1.26.10
 
 require (
 	github.com/bits-and-blooms/bitset v1.2.0
